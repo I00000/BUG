@@ -38,4 +38,14 @@ async function main() {
   }
 }
 
-main();
+//main();
+exec('git commit -a -m "message1"', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing Git command: ${error}`);
+      return;
+    }
+  
+    // Process the output
+    console.log(`Git output: ${stdout}`);
+    console.error(`Git errors: ${stderr}`);
+  });
