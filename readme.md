@@ -5,6 +5,7 @@ git commit -a -m "message1" // commit a change
 git checkout main
 git rebase
 git merge u1
+git branch -D u1
 git push
 
 
