@@ -1,5 +1,5 @@
 const { promisify } = require('util');
-const { exec } = require('child_process');
+const { exec, execSync } = require('child_process');
 
 const execAsync = promisify(exec);
 
@@ -39,16 +39,28 @@ async function main() {
 }
 
 //main();
-exec('git commit -a -m "message1"', (error, stdout, stderr) => {
-        // Process the output
-        console.log(`Git output: ${stdout}`);
-        console.error(`Git errors: ${stderr}`)
-    if (error) {
-      console.error(`Error executing Git command: ${error}`);
-      return;
-    }
+
+
+function main2() {
+    try {
+      let result = execSync('git pull');
+      console.log(result);
   
-    // Process the output
-    console.log(`Git output: ${stdout}`);
-    console.error(`Git errors: ${stderr}`);
-  });
+    } catch (error) {
+      console.error(error);
+    }
+    try {
+      result = execSync('git commit -a -m "message1"');
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+    try {
+      result = execSync('git push');
+      console.log(result);
+  
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  main2();
