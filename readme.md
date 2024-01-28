@@ -6,7 +6,7 @@ git checkout main
 git merge u1
 git push
 
-// List branch
-git branch -v
+
+git branch -v // List branch
 
 ```
