@@ -19,8 +19,17 @@ async function main() {
   try {
     let result = await executeGitCommand('git pull');
     console.log(result);
+
+  } catch (error) {
+    console.error(error);
+  }
+  try {
     result = await executeGitCommand('git commit -a -m "message1"');
     console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+  try {
     result = await executeGitCommand('git push');
     console.log(result);
 
