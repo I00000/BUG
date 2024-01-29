@@ -54,6 +54,8 @@ async function main() {
 function main2() {
     try {
         let result = execSync('git pull');
+        result.stdout = result.stdout?.toString();
+        result.stderr = result.stderr?.toString();
         console.log(result);
 
     } catch (error) {
@@ -72,6 +74,8 @@ function main2() {
     }
     try {
         result = execSync('git push');
+        result.stdout = result.stdout?.toString();
+        result.stderr = result.stderr?.toString();
         console.log(result);
 
     } catch (error) {
