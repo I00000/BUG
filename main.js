@@ -59,8 +59,8 @@ function main2() {
     } catch (error) {
         console.error(error);
     }
+    let cmd = 'git commit -a -m "message1"';
     try {
-        let cmd = 'git commit -a -m "message1"';
         result = execSync(cmd);
         console.log(result);
     } catch (error) {
