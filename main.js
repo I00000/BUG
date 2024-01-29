@@ -56,9 +56,7 @@ function main2() {
     console.log('cmd:', cmd);
     try {
         let result = execSync(cmd);
-
-        result.stdout = result.stdout?.toString();
-        result.stderr = result.stderr?.toString();
+        result.stdout = result.toString();
         console.log(result);
 
     } catch (error) {
@@ -80,8 +78,7 @@ function main2() {
     console.log('cmd:', cmd);
     try {
         result = execSync(cmd);
-        result.stdout = result.stdout?.toString();
-        result.stderr = result.stderr?.toString();
+        result.stdout = result.toString();
         console.log(result);
 
     } catch (error) {
