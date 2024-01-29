@@ -3,6 +3,13 @@ const { exec, execSync } = require('child_process');
 
 const execAsync = promisify(exec);
 
+async function lsExample() {
+  const { stdout, stderr } = await execAsync('ls');
+  console.log('stdout:', stdout);
+  console.error('stderr:', stderr);
+}
+lsExample();
+
 async function executeGitCommand(command) {
     try {
         const { stdout, stderr } = await execAsync(command);
