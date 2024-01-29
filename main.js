@@ -52,8 +52,11 @@ async function main() {
 
 
 function main2() {
+    let cmd = 'git pull';
+    console.log('cmd:', cmd);
     try {
-        let result = execSync('git pull');
+        let result = execSync(cmd);
+
         result.stdout = result.stdout?.toString();
         result.stderr = result.stderr?.toString();
         console.log(result);
@@ -61,7 +64,8 @@ function main2() {
     } catch (error) {
         console.error(error);
     }
-    let cmd = 'git commit -a -m "message1"';
+    cmd = 'git commit -a -m "message1"';
+    console.log('cmd:', cmd);
     try {
         result = execSync(cmd);
         console.log(result);
@@ -72,8 +76,10 @@ function main2() {
         }
         console.error(error);
     }
+    cmd = 'git push';
+    console.log('cmd:', cmd);
     try {
-        result = execSync('git push');
+        result = execSync(cmd);
         result.stdout = result.stdout?.toString();
         result.stderr = result.stderr?.toString();
         console.log(result);
