@@ -4,15 +4,15 @@ const { exec, execSync } = require('child_process');
 const execAsync = promisify(exec);
 
 async function executeGitCommand(command) {
-  try {
-    const { stdout, stderr } = await execAsync(command);
-    if (stderr) {
-      throw new Error(stderr);
+    try {
+        const { stdout, stderr } = await execAsync(command);
+        if (stderr) {
+            throw new Error(stderr);
+        }
+        return stdout.trim();
+    } catch (error) {
+        throw new Error(`Failed to execute git command: ${error}`);
     }
-    return stdout.trim();
-  } catch (error) {
-    throw new Error(`Failed to execute git command: ${error}`);
-  }
 }
 
 async function commit(message) {
@@ -22,30 +22,30 @@ async function commit(message) {
     } catch (ex) {
         throw ex;
     }
-    return {stdout, stderr};
+    return { stdout, stderr };
 }
 
 async function main() {
-  try {
-    let result = await executeGitCommand('git pull');
-    console.log(result);
+    try {
+        let result = await executeGitCommand('git pull');
+        console.log(result);
 
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    result = await executeGitCommand('git commit -a -m "message1"');
-    console.log(result);
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    result = await executeGitCommand('git push');
-    console.log(result);
+    } catch (error) {
+        console.error(error);
+    }
+    try {
+        result = await executeGitCommand('git commit -a -m "message1"');
+        console.log(result);
+    } catch (error) {
+        console.error(error);
+    }
+    try {
+        result = await executeGitCommand('git push');
+        console.log(result);
 
-  } catch (error) {
-    console.error(error);
-  }
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 //main();
@@ -53,27 +53,29 @@ async function main() {
 
 function main2() {
     try {
-      let result = execSync('git pull');
-      console.log(result);
-  
+        let result = execSync('git pull');
+        console.log(result);
+
     } catch (error) {
-      console.error(error);
+        console.error(error);
     }
     try {
-      result = execSync('git commit -a -m "message1"');
-      console.log(result);
+        let cmd = 'git commit -a -m "message1"';
+        result = execSync(cmd);
+        console.log(result);
     } catch (error) {
-        if (error.message === '') {
-            
+        if (error.message === `Command failed: ${cmd}`) {
+            error.stdout = error.stdout?.toString();
+            error.stderr = error.stderr?.toString();
         }
-      console.error(error);
+        console.error(error);
     }
     try {
-      result = execSync('git push');
-      console.log(result);
-  
+        result = execSync('git push');
+        console.log(result);
+
     } catch (error) {
-      console.error(error);
+        console.error(error);
     }
-  }
-  main2();
+}
+main2();
