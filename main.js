@@ -79,7 +79,7 @@ function main2() {
     try {
         result = execSync(cmd);
         result.stdout = result.toString();
-        console.log(result);
+        //console.log(result);
 
     } catch (error) {
         console.error(error);
