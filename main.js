@@ -4,7 +4,7 @@ const { exec, execSync } = require('child_process');
 const execAsync = promisify(exec);
 
 async function lsExample() {
-  const { stdout, stderr } = await execAsync('ls');
+  const { stdout, stderr } = await execSync('ls');
   console.log('stdout:', stdout);
   console.error('stderr:', stderr);
 }
