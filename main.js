@@ -15,6 +15,16 @@ async function executeGitCommand(command) {
   }
 }
 
+async function commit(message) {
+    let stdout, stderr;
+    try {
+
+    } catch (ex) {
+        throw ex;
+    }
+    return {stdout, stderr};
+}
+
 async function main() {
   try {
     let result = await executeGitCommand('git pull');
@@ -53,6 +63,9 @@ function main2() {
       result = execSync('git commit -a -m "message1"');
       console.log(result);
     } catch (error) {
+        if (error.message === '') {
+            
+        }
       console.error(error);
     }
     try {
