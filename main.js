@@ -82,7 +82,7 @@ function main2() {
         //console.log(result);
 
     } catch (error) {
-        console.error(error);
+        //console.error(error);
     }
 }
 main2();
