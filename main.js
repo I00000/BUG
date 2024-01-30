@@ -6,7 +6,7 @@ function main() {
     console.log('cmd:', cmd);
 
     try {
-        let result = git.pullCommand();
+        let result = git.pullCommand().toString();
         console.log(result);
     } catch (error) {
         console.error(error);
