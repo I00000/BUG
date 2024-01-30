@@ -5,7 +5,7 @@ class GitCommand {
 
     executeGitCommand(command) {
         try {
-            return execSync(command);
+            return execSync(command).toString();
         } catch (error) {
             error.output = error.output.map(output => output ? output.toString() : '');
             error.stdout = error.stdout?.toString();
@@ -16,7 +16,7 @@ class GitCommand {
 
     pullCommand() {
         const cmd = 'git pull';
-        return this.executeGitCommand(cmd).toString();
+        return this.executeGitCommand(cmd);
     }
 
     commitCommand(message) {
