@@ -1,12 +1,14 @@
 const { promisify } = require('util');
 const { exec, execSync } = require('child_process');
+const GitCommand = require('./GitCommand');
+const git = new GitCommand();
 
 const execAsync = promisify(exec);
 
 async function lsExample() {
-  const { stdout, stderr } = await execSync('ls');
-  console.log('stdout:', stdout);
-  console.error('stderr:', stderr);
+  const result = await execSync('ls');
+  console.log('stdout:', result.toString());
+  console.error('stderr:', result.stderr);
 }
 lsExample();
 
@@ -61,31 +63,25 @@ async function main() {
 function main2() {
     let cmd = 'git pull';
     console.log('cmd:', cmd);
-    try {
-        let result = execSync(cmd);
-        result.stdout = result.toString();
-        console.log(result);
 
+    try {
+        let result = git.pullCommand();
+        console.log(result);
     } catch (error) {
         console.error(error);
     }
     cmd = 'git commit -a -m "message1"';
     console.log('cmd:', cmd);
     try {
-        result = execSync(cmd);
+        result = git.commitCommand('message1');
         console.log(result);
     } catch (error) {
-        if (error.message === `Command failed: ${cmd}`) {
-            error.stdout = error.stdout?.toString();
-            error.stderr = error.stderr?.toString();
-        }
         console.error(error);
     }
     cmd = 'git push';
     console.log('cmd:', cmd);
     try {
-        result = execSync(cmd);
-        result.stdout = result.toString();
+        let result = git.pushCommand();
         console.log(result);
 
     } catch (error) {
