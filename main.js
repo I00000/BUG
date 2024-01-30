@@ -6,8 +6,8 @@ function main() {
     console.log('cmd:', cmd);
 
     try {
-        let result = git.pullCommand().toString();
-        console.log('result', result.toString());
+        let result = git.pullCommand();
+        console.log('result', result);
     } catch (error) {
         console.error(error);
     }
@@ -15,7 +15,7 @@ function main() {
     console.log('cmd:', cmd);
     try {
         result = git.commitCommand('message1');
-        console.log('result', result.toString());
+        console.log('result', result);
     } catch (error) {
         console.error(error);
     }
@@ -23,7 +23,7 @@ function main() {
     console.log('cmd:', cmd);
     try {
         let result = git.pushCommand();
-        console.log('result', result.toString());
+        console.log('result', result);
 
     } catch (error) {
         console.error(error);
