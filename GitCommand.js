@@ -21,7 +21,7 @@ class GitCommand {
 
     commitCommand(message) {
         const cmd = `git commit -a -m "${message}"`;
-        let res;
+        let res = '';
         try {
             res = this.executeGitCommand(cmd);
         } catch (error) {
