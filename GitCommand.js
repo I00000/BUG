@@ -16,7 +16,7 @@ class GitCommand {
 
     pullCommand() {
         const cmd = 'git pull';
-        return this.executeGitCommand(cmd);
+        return this.executeGitCommand(cmd).toString();
     }
 
     commitCommand(message) {
